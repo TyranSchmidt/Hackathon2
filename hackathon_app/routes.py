@@ -68,12 +68,6 @@ def profile():
             return flask.redirect('sign_up')
     return flask.render_template("profile.html", country_list=country_list, full_name=Full_name, date_of_birth=Date_of_birth, username=session['Username'], country=Country, city=City, unique_id=Unique_id, hobbies=Hobbies, hidden=Hidden, no_hidden=no_hidden)
 
-@app.route('/view', methods=["GET", "POST"])
-def view():
-    country_list = country_db()
-    x = table_parts()
-    rows = table_items()
-    return flask.render_template("buddy-finder.html", country_list=country_list, x=x, rows=rows)
 
 @app.route('/search', methods=["GET", "POST"])
 def search():

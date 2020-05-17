@@ -1,6 +1,6 @@
 import psycopg2
 import uuid
-from flask import session
+
 
 HOSTNAME = 'localhost'
 USERNAME = 'postgres'
@@ -8,6 +8,7 @@ PASSWORD = 'blizzard86'
 DATABASE = 'Hackathon2 - Buddy-Finder'
 
 def make_id():
+    # makes a unique ID for the add friend interaction to be added later
     id = uuid.uuid1()
     id_hex = id.hex
     new = False
@@ -23,6 +24,7 @@ def make_id():
        
 
 def new_account(id_hex, full_name, username, email, country, password):
+    # creates a new account that gets sent to the database and creates a session
     try:
         connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
         cursor = connection.cursor()
@@ -40,6 +42,7 @@ def new_account(id_hex, full_name, username, email, country, password):
             return id_hex
 
 def log_in(item1, password):
+    # logs you in the details entered are correct and creates a session
     try:
         connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
         cursor = connection.cursor()
@@ -65,6 +68,7 @@ def log_in(item1, password):
         return logged_in
 
 def country_db():
+    # list of countries to be referenced in the select tab
     try:
         connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
         cursor = connection.cursor()
@@ -84,6 +88,7 @@ def country_db():
             return list_temp
 
 def update_profile(Full_name, Date_of_birth, Username, Country, City, Unique_id, Hobbies, Hidden):
+    # updates the profile information
     try:
         connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
         cursor = connection.cursor()
@@ -106,6 +111,7 @@ def update_profile(Full_name, Date_of_birth, Username, Country, City, Unique_id,
 
 
 def new_profile(Full_name, Username, Country, Unique_id, Hidden):
+    # created a new profile with all the known details
     try:
         connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
         cursor = connection.cursor()
@@ -120,6 +126,7 @@ def new_profile(Full_name, Username, Country, Unique_id, Hidden):
             connection.close()
 
 def open_profile(username):
+    # opens the profile with all the already known details
     try:
         connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
         cursor = connection.cursor()
@@ -140,6 +147,7 @@ def open_profile(username):
         return stuff
 
 def check_username(username):
+    # makes sure the database doesn't already contain a username to avoid errors appearing in the future
     try:
         connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
         cursor = connection.cursor()
@@ -161,48 +169,9 @@ def check_username(username):
             connection.close()
         return value
 
-def table_parts():
-    try:
-        connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
-        cursor = connection.cursor()
-        cursor.execute(f"SELECT username FROM user_profiles WHERE hidden='no'")
-        user_details = cursor.fetchall()
-        x = 0
-        for item in user_details:
-            for detail in item:
-                x+= 1
-
-    except psycopg2.Error as err:
-            print(err)
-
-    finally:
-        if connection:
-            connection.close()
-        return x
-
-
-def table_items():
-    try:
-        connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
-        cursor = connection.cursor()
-        cursor.execute(f"SELECT username, country, city, hobbies FROM user_profiles WHERE hidden = 'no'")
-        user_details = cursor.fetchall()
-        rows = []
-        for item in user_details:
-            for detail in item:
-                rows.append(detail)
-        print(rows)
-
-    except psycopg2.Error as err:
-        print(err)
-
-    finally:
-        if connection:
-            connection.close()
-        return rows
 
 def search_db(username = "", country = "", city = "", hobbies = ""):
-
+    # this will allow people to search the table for elements that may interest them
     try:
         connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
         cursor = connection.cursor()
@@ -218,7 +187,7 @@ def search_db(username = "", country = "", city = "", hobbies = ""):
         return table_data
 
 def searchable_users():
-
+    # this will show all the users in the table that have set their profiles to not hidden
     try:
         connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
         cursor = connection.cursor()
