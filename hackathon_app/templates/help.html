@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Help</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div id="navbar-underline">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <span id="name" class="navbar-brand">Buddy-Finder</span>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link disabled" href="http://127.0.0.1:5000/help">Help</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5000/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5000/search">Find-a-buddy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" name="sign_out" href="http://127.0.0.1:5000">Sign out</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+        <div>
+            <span><h1>Welcome {{ username }}</h1></span>
+        </div>
+        <div>
+            <p><span class="mini-header">Before we get started:</span><br>Thank you for joining Buddy-Finder. At the top right corner is the Sign out
+            button, next to it is the Profile. Here you can change details about yourself, make sure to go there
+            now to add updates. By default your profile is hidden making it unable to be seen on the Buddy-Finder table,
+            be sure to change that if you want to be found by other potential buddies!</p>
+        </div>
+        <div>
+            <p id="click me"><span class="mini-header">One more thing:</span><br>The View page will allow you to search for other people that have traits you me be
+            looking for! You can add people to your friends list there and talk to them through your friends list
+            located in your profile.<br>Try checking it when you are ready!<br><span id="bold">Click to continue or click
+            on the profile tab.</span></p>
+        </div>
+    <style>
+    p {
+	border: 2px black solid;
+	width: 50%;
+	display: inline-block;
+	margin: 20px;
+	padding: 20px;
+	background-color: RGB(240, 237, 151);
+    }
+
+    div {
+        text-align: center;
+    }
+
+    h1 {
+        background-color: RGB(240, 237, 151);
+        color: RGB(29, 128, 82);
+        text-decoration: underline;
+    }
+
+    #bold {
+        font-weight: bold;
+    }
+
+    #name {
+        font-size: 30px;
+    }
+
+    #navbar-underline {
+       border-bottom: 2px white solid;
+    }
+
+    .mini-header {
+        font-weight: bold;
+        color: red;
+        text-decoration: underline;
+    }
+    </style>
+    <script>
+        let p = document.getElementById("click me");
+        p.addEventListener("click", to_profile);
+
+        function to_profile() {
+            window.location= "http://127.0.0.1:5000/profile"
+        }
+    </script>
+</body>
+</html>

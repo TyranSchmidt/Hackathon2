@@ -1,0 +1,30 @@
+form {
+	border: 2px black solid;
+	margin: 50px;
+	width: 50%;
+	display: inline-block;
+}
+
+div {
+	text-align: center;
+}
+
+input, select {
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+
+button  {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+label, select {
+	width: 180px;
+	display: inline-block;
+	text-align: right;
+}
+
+h1 {
+    margin-bottom: 20px;
+}

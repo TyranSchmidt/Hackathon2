@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div id="navbar-underline">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <span id="name2" class="navbar-brand">Buddy-Finder</span>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="http://127.0.0.1:5000/help">Help</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5000/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="http://127.0.0.1:5000/search">Find-a-buddy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5000">Sign out</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <form method = "POST">
+        <h1>Search Buddy-Finder By...</h1>
+        <label>Username:</label><input type="text" name="username" id="username_input" placeholder="Search for names..">
+        <select name="country"><option  disabled selected hidden value="">Choose a country</option>
+               {% for countries in country_list %}
+               <option value="{{ countries }}">{{ countries }}</option>
+               {% endfor %}</select>
+         <label>City:</label><input type="text" name="city" id="city_input" placeholder="Search for names..">
+        <label>Hobbies:</label><input type="text" id="hobbies_input" name="hobbies" placeholder="Search for names.."><br>
+        <button type="submit" class="btn btn-success col-md-1 offset-5 buttons">Search</button>
+        <a href="http://127.0.0.1:5000/search" class="btn btn-primary col-md-1 buttons">Reset Table</a>
+    </form>
+    {% if user_profiles %}
+    <div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>No.</th>
+                <th>Username</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Hobbies</th>
+             </tr>
+        </thead>
+        {% for profile in user_profiles %}
+        {% if profile[7] == "no" %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ profile[2] }}</td>
+            <td>{{ profile[3] }}</td>
+            <td>{{ profile[4] }}</td>
+            <td>{{ profile[6] }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+    </div>
+    {% endif %}
+    <style>
+        table {
+            width: 100%;
+        }
+
+        h1 {
+            color: RGB(29, 128, 82);
+            text-decoration: underline;
+            background-color: RGB(240, 237, 151);
+            text-align: center;
+        }
+
+        label {
+            margin-left: 100px;
+        }
+
+        input, select {
+            margin: 20px 50px 20px 0px;
+            background-color: RGB(240, 237, 151);
+        }
+
+        .buttons {
+            margin-bottom: 20px;
+        }
+
+    </style>
+</body>
+</html>

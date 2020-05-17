@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div id="navbar-underline">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <span id="name2" class="navbar-brand">Buddy-Finder</span>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="http://127.0.0.1:5000/help">Help</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="http://127.0.0.1:5000/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5000/search">Find-a-buddy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5000">Sign out</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+     <div id="navbar-underline">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="collapse navbar-collapse row">
+                    <a class="navbar-brand col-sm name" href="#">Profile</a>
+                    <a class="navbar-brand col-sm name" href="#">Friends List</a>
+                    <a class="navbar-brand col-sm name" href="#">Recent Contacts</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <form class="container" method="POST">
+        <label>Full Name</label><input type="text" name="Full_name" value="{{ full_name }}" required><br>
+        <label>Date of Birth</label><input type="date" name="Date_of_birth" value="{{ date_of_birth }}" required><br>
+        <label>Username</label><input type="text" name="Username" value="{{ username }}" required><br>
+        <label>Country</label>
+        <select name="Country" required>
+                <option selected value="{{ country }}">{{ country }}</option>
+               {% for countries in country_list %}
+               <option value="{{ countries }}">{{ countries }}</option>
+               {% endfor %}
+            </select><br>
+         <label>City</label><input type="text" name="City" placeholder="Enter city here..." value="{{ city }}"><br>
+        <label>Unique ID</label><input type="text" name="unique ID" value="{{ unique_id }}" disabled><br>
+        <label>Hide Profile</label><select name="Hidden">
+        <option selected hidden value="{{ hidden }}">{{ hidden }}</option>
+        <option value="yes">yes</option>
+        <option value="no">no</option>
+    </select><br>
+        <label>Hobbies</label><input id="hobby" type="text" name="Hobbies" placeholder="Fill me in..." value="{{ hobbies }}" required><br>
+        <input type="submit" name="btn" class="btn btn-success col-md-2 offset-4" value="Apply Changes">
+        <input type="text" name="Unique ID" value="{{ unique_id }}" hidden><br>
+    </form>
+    <style>
+        .name {
+                font-size: 30px;
+                color: red;
+                border: 1px teal solid;
+                background-color: RGB(240, 237, 151);
+            }
+
+        #name2 {
+            font-size: 30px;
+        }
+
+        #navbar-underline {
+           border-bottom: 2px white solid;
+        }
+
+        input, select {
+            margin: 15px 0px 15px 25px;
+            background-color: RGB(240, 237, 151);
+            width: 600px;
+        }
+
+        label, select {
+            width: 170px;
+            display: inline-block;
+            text-align: right;
+        }
+
+
+
+    </style>
+
+
+</body>
+</html>

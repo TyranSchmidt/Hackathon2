@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Buddy-Finder</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/sign_up_page.css') }}">
+</head>
+<body>
+	<div>
+		<form id="form1" method="POST">
+			<h1>Log In</h1>
+			<label>Username*</label><input type="text" name="Username" placeholder="SuperBen" required><br>
+			<label>Password*</label><input type="password" name="Password_in" placeholder="*****" required><br>
+			<input type="submit" name="btn" value="Log in">
+		</form>
+	</div>
+	<div>
+		<form id="form2" method="POST">
+			<h1>Sign Up</h1>
+			<label>Full Name*</label><input type="text" name="Full_name" placeholder="John Smith" required><br>
+			<label>Username*</label><input type="text" name="Username" placeholder="Johnny" required><br>
+			<label>Email*</label><input type="text" name="Email" placeholder="example@mail.com" required><br>
+			<label>Country*</label>
+			<select name="Country" required>
+				<option disabled selected hidden value="">Choose a country</option>
+               {% for country in country_list %}
+               <option value="{{ country }}">{{ country }}</option>
+               {% endfor %}
+            </select><br>
+			<label>Password*</label><input type="password" name="Password" placeholder="*****" required><br>
+			<input type="submit" name="btn" value="Sign up">
+		</form>
+	</div>
+    <style>
+        form {
+            background-color: RGB(240, 237, 151);
+        }
+
+        h1 {
+            color: RGB(29, 128, 82);
+            text-decoration: underline;
+        }
+    </style>
+</body>
+</html>
