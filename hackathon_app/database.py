@@ -131,7 +131,6 @@ def open_profile(username):
         connection = psycopg2.connect(host=HOSTNAME, user=USERNAME, password=PASSWORD, dbname=DATABASE)
         cursor = connection.cursor()
         stuff = []
-        print(username)
         cursor.execute(f"SELECT * FROM user_profiles WHERE username = '{username}'")
         user_details = cursor.fetchall()
         for item in user_details:

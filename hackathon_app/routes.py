@@ -16,7 +16,7 @@ def sign_up():
         if request.form['btn'] == "Log in":
             session['username'] = request.form.get("Username")
             password_in = request.form.get("Password_in")
-            is_logged_in = log_in(session['user_email'], password_in)
+            is_logged_in = log_in(session['username'], password_in)
             if is_logged_in:
                 return flask.redirect("profile")
         elif request.form['btn'] == "Sign up":
@@ -74,7 +74,6 @@ def search():
     country_list = country_db()
     user_profiles = searchable_users()
     if request.method == "POST":
-        print(request.form)
         username = request.form.get("username", "")
         country = request.form.get("country", "")
         city = request.form.get("city", "")
